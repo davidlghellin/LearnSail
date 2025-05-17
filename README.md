@@ -42,7 +42,7 @@ kubectl apply -f .submodules/sail/k8s/sail.yaml
 Generamos un cliente básico
 
 ```
-docker build -t pyspark-client:latest -f "./client/Dockerfile" . && \
+docker build -t pyspark-client:latest -f "./basic_example/Dockerfile" . && \
 kind load docker-image pyspark-client:latest && \
-kubectl apply -f "./client/job.yaml"
+kubectl apply -f "./basic_example/job.yaml"
 ```

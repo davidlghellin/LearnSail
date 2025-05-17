@@ -7,6 +7,6 @@ spark = SparkSession.builder.remote("sc://sail-spark-server.sail.svc.cluster.loc
 
 print("✅ Conectado a Spark:", spark.version)
 
-df = spark.range(2)
+df = spark.range(3)
 df.show()
 spark.stop()
