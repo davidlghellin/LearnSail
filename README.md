@@ -24,10 +24,17 @@ git clone --recurse-submodules <repo-url>
 kind create cluster
 ```
 
-Generamos la imagen docker
+Generamos la imagen docker, pero para que funcione de momento hay que cambiar
 
 ```
-docker build -t sail:latest -f ".submodules/sail/docker/release/Dockerfile" --build-arg RELEASE_TAG="main" --build-arg RUST_PROFILE="release" . && \
+Linux
+sed -i 's/args: \[ "spark", "server", "--port", "50051" \]/args: ["spark", "server", "--ip", "0.0.0.0", "--port", "50051"]/' .submodules/sail/k8s/sail.yaml
+MAC
+sed -i '' 's/args: \[ "spark", "server", "--port", "50051" \]/args: ["spark", "server", "--ip", "0.0.0.0", "--port", "50051"]/' .submodules/sail/k8s/sail.yaml
+```
+
+```
+docker build -t sail:latest -f ".submodules/sail/docker/release/Dockerfile" --build-arg RELEASE_TAG="main" --build-arg RUST_PROFILE="dev" . && \
 kind load docker-image sail:latest && \
 kubectl apply -f .submodules/sail/k8s/sail.yaml
 ```
