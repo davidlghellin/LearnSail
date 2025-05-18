@@ -1,3 +1,4 @@
 [submodule ".submodules/sail"]
 	path = .submodules/sail
 	url = https://github.com/lakehq/sail
+	branch = main
